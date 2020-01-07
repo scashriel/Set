@@ -1,1 +1,1 @@
-An assignment to create a Set class with basic functions that can be done on sets
+An assignment to create a generic Set class with basic functions that can be done on sets
