@@ -50,10 +50,10 @@ public class SetClass<T> {
     }
 
     //delete an element from the set
-    public void delete(T element){
-        //check isMember - if true, do nothing, else delete
-        //use remove method
-    }
+//    public void delete(T element){
+//        //check isMember - if true, do nothing, else delete
+//        //use remove method
+//    }
 
     //returns an iterator
     public ￿Iterator<T> iterator(){
