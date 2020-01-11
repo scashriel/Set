@@ -12,9 +12,10 @@ public class SetClass<T> implements Iterable<T>{
         set = new ArrayList<>();
     }
 
-    //constructor
+    //constructor with array param
     public SetClass(T[] e){
-        set = new ArrayList<>();
+        //set = new ArrayList<>();
+        this();
         for (T item : e){
             this.insert(item);
         }
