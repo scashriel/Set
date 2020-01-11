@@ -1,68 +1,115 @@
 //A Generic class to define a set of some Type
 
-import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SetClass<T> {
+public class SetClass<T> implements Iterable<T>{
 
-    private ArrayList<T> elements;
-    private Iterator<T> Iterator;
+    private ArrayList<T> set;
 
     //default constructor
     public SetClass(){
-        elements = new ArrayList<T>();
+        set = new ArrayList<>();
     }
 
     //constructor
-    public SetClass(ArrayList<T> a){
-        //construct set from elements in list
-        //implement equals to prevent duplicate of elements
-        //use hashSet?
+    public SetClass(T[] e){
+        set = new ArrayList<>();
+        for (T item : e){
+            this.insert(item);
+        }
     }
 
     //create a union of one set with this set
-    public void union(SetClass set){
+    public void union(SetClass s){
         //add elements that are in other set into this set
+        Iterator<T> it = s.iterator();
+        while(it.hasNext()){
+            T e = it.next();
+            if(!isMember(e)){
+                this.insert(e);
+            }
+        }
     }
 
     //create intersect of one set with this set
-    public void intersect(SetClass<T> set){
-        //remove elements from this set that are not in other set
+    public void intersect(SetClass<T> s){
+        Iterator<T> it = this.iterator();
+        while (it.hasNext()){
+            T e = it.next();
+            if(!s.isMember(e)){
+                it.remove();
+            }
+        }
     }
 
     //check if the set is a subset of this set
-    public boolean isSubset(SetClass<T> set){
-        //if set size > this set - false
-        //check that every item in set is found in this set
-        return true;
+    public boolean isSubset(SetClass<T> s){
+        boolean sub = true;
+        if(s.getSetSize() > this.getSetSize()){
+            sub = false;
+        }
+        else{
+            Iterator<T> it = s.iterator();
+            while(it.hasNext()){
+                T e = it.next();
+                if(!isMember(e)){
+                    sub = false;
+                    break;
+                }
+            }
+        }
+        return sub;
     }
 
     //check if element is found in this set
     public boolean isMember(T element){
-        //contains element
-        return false;
+        return set.contains(element);
     }
 
     //add an element to the set
     public void insert(T element){
-        //check isMember - if true, do nothing, else add
+        if (!isMember(element)){
+            set.add(element);
+        }
     }
 
     //delete an element from the set
-//    public void delete(T element){
-//        //check isMember - if true, do nothing, else delete
-//        //use remove method
-//    }
-
-    //returns an iterator
-    public ￿Iterator<T> iterator(){
-        return Iterator;
+    public void delete(T element){
+        if(isMember(element)) {
+            set.remove(element);
+        }
     }
+
+    //iterator
+    @Override
+    public Iterator<T> iterator() {
+        return set.iterator();
+    }
+
 
     //toString
     public String toString(){
-        return "";
+        StringBuilder res = new StringBuilder();
+        res.append("The elements are: ");
+        for(T e : set){
+            res.append(e+" ");
+        }
+
+        return res.toString();
     }
+
+    public ArrayList<T> getSet() {
+        return set;
+    }
+
+    public void setSet(ArrayList<T> set) {
+        this.set = set;
+    }
+
+    public int getSetSize(){
+        return set.size();
+    }
+
 
 }
