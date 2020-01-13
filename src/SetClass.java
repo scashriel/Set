@@ -14,7 +14,6 @@ public class SetClass<T> implements Iterable<T>{
 
     //constructor with array param
     public SetClass(T[] e){
-        //set = new ArrayList<>();
         this();
         for (T item : e){
             this.insert(item);
@@ -24,10 +23,8 @@ public class SetClass<T> implements Iterable<T>{
     //create a union of one set with this set
     public void union(SetClass s){
         //add elements that are in other set into this set
-        Iterator<T> it = s.iterator();
-        while(it.hasNext()){
-            T e = it.next();
-            if(!isMember(e)){
+        for (T e : (Iterable<T>) s) {
+            if (!isMember(e)) {
                 this.insert(e);
             }
         }
@@ -36,11 +33,13 @@ public class SetClass<T> implements Iterable<T>{
     //create intersect of one set with this set
     public void intersect(SetClass<T> s){
         Iterator<T> it = this.iterator();
-        while (it.hasNext()){
-            T e = it.next();
-            if(!s.isMember(e)){
-                it.remove();
-            }
+        if (it.hasNext()) {
+            do {
+                T e = it.next();
+                if (!s.isMember(e)) {
+                    it.remove();
+                }
+            } while (it.hasNext());
         }
     }
 
@@ -51,10 +50,8 @@ public class SetClass<T> implements Iterable<T>{
             sub = false;
         }
         else{
-            Iterator<T> it = s.iterator();
-            while(it.hasNext()){
-                T e = it.next();
-                if(!isMember(e)){
+            for (T e : s) {
+                if (!isMember(e)) {
                     sub = false;
                     break;
                 }
