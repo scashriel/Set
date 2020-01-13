@@ -1,6 +1,5 @@
 //test class for person
 
-import java.util.Set;
 
 public class PersonTest {
     public static void main(String[] args) {
