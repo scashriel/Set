@@ -101,8 +101,8 @@ public class SetClass<T> implements Iterable<T>{
         return set;
     }
 
-    public void setSet(ArrayList<T> set) {
-        this.set = set;
+    public T getSetElement(int index) {
+        return set.get(index);
     }
 
     public int getSetSize(){
