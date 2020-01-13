@@ -15,7 +15,7 @@ public class Person implements Comparable<Person>{
     @Override
     public int compareTo(Person o) {
         if(this.lastName.equals(o.lastName)){
-            return (this.firstName.compareTo(this.firstName));
+            return (this.firstName.compareTo(o.firstName));
         }
         else
             return this.lastName.compareTo(o.lastName);
@@ -39,6 +39,6 @@ public class Person implements Comparable<Person>{
 
     @Override
     public String toString(){
-        return String.format("%s %s was born in %d and their id number is %s",this.firstName,this.lastName, this.birthYear, this.id);
+        return String.format("%s %s was born in %d and their id number is %s%n",this.firstName,this.lastName, this.birthYear, this.id);
     }
 }
