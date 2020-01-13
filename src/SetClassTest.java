@@ -1,3 +1,4 @@
+//Test class that instantiates 3 sets of Integer type and tests the functions of SetClass
 import javax.swing.*;
 
 public class SetClassTest {
